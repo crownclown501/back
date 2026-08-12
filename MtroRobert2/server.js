@@ -8,8 +8,10 @@ app.use(cors());
 
 app.get('/api/noticias-sat', async (req, res) => {
   // Tu API Key se queda segura en el backend (idealmente en un archivo .env) 
+const API_KEY = '9acb3561422cee5120870b383ed50e25'; 
   const query = '"SAT" OR "contabilidad financiera" OR "reforma fiscal"';
   const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=es&country=mx&max=12&apikey=${API_KEY}`;
+
 require('dotenv').config();
 const API_KEY = process.env.GNEWS_API_KEY;
   try {
