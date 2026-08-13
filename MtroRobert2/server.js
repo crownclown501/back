@@ -26,5 +26,5 @@ app.get('/api/noticias-sat', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor backend corriendo en http://localhost:${PORT}/`);
+  console.log(`Servidor backend corriendo en https://github.com/crownclown501/back/tree/0a5173813a3e445e9f1a0c889a236f24a4a9e9f3/MtroRobert2:${PORT}/`);
 });
