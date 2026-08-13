@@ -1,24 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT= process.env.PORT || 3000;
 
-// Permite que tu app de Angular haga peticiones a este servidor
+// Permite que tu app de Angular (usualmente en localhost:4200) haga peticiones a este servidor
 app.use(cors());
 
 app.get('/api/noticias-sat', async (req, res) => {
-  // Ahora toma la llave de las variables de entorno de Render
-  const API_KEY = process.env.API_KEY; 
-  
-  if (!API_KEY) {
-    return res.status(500).json({ error: 'La API Key no está configurada en el servidor.' });
-  }
-
+  // Tu API Key se queda segura en el backend (idealmente en un archivo .env)
+  const API_KEY = '9acb3561422cee5120870b383ed50e25'; 
   const query = '"SAT" OR "contabilidad financiera" OR "reforma fiscal"';
   const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=es&country=mx&max=12&apikey=${API_KEY}`;
 
   try {
-    // La imagen muestra que Render usa Node v24.14.1, por lo que 'fetch' nativo funcionará perfectamente sin librerías extra.
     const response = await fetch(url);
     const data = await response.json();
     
@@ -32,5 +26,5 @@ app.get('/api/noticias-sat', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor backend corriendo en el puerto ${PORT}`);
+  console.log(`Servidor backend corriendo en http://localhost:${PORT}/`);
 });
